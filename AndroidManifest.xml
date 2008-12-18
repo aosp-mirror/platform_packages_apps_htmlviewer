@@ -21,7 +21,6 @@
         package="com.android.htmlviewer">
 
     <application android:label="HTML Viewer">
-
         <activity android:name="HTMLViewerActivity" android:label="HTMLViewer"
                   android:theme="@android:style/Theme.Light" >
             <intent-filter>
@@ -34,7 +33,12 @@
                 <data android:mimeType="application/xhtml+xml"/>
                 <data android:mimeType="application/vnd.wap.xhtml+xml"/>
             </intent-filter>
-         </activity>   
+         </activity>
+         
+         <provider android:name="FileContentProvider"
+                 android:authorities="com.android.htmlfileprovider"
+                 android:syncable="false" android:multiprocess="false"
+                 android:grantUriPermissions="true" /> 
 
     </application>
     

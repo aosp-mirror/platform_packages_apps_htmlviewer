@@ -81,8 +81,11 @@ public class HTMLViewerActivity extends Activity {
         
         // Configure the webview
         WebSettings s = mWebView.getSettings();
-        s.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+        s.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         s.setUseWideViewPort(true);
+        s.setSavePassword(false);
+        s.setSaveFormData(false);
+        s.setBlockNetworkLoads(true);
         
         // Javascript is purposely disabled, so that nothing can be 
         // automatically run.
@@ -97,47 +100,18 @@ public class HTMLViewerActivity extends Activity {
             if (intent.getData() != null) {
                 Uri uri = intent.getData();
                 if ("file".equals(uri.getScheme())) {
-                    loadFile(uri, intent.getType());
+                    String contentUri = 
+                        FileContentProvider.BASE_URI + 
+                        uri.getEncodedPath() + 
+                        "?" +
+                        intent.getType();
+                    mWebView.loadUrl(contentUri);
                 } else {
-                    mWebView.loadUrl(intent.getData().toString());
+                    mWebView.loadUrl(intent.getData().toString() + 
+                        "?" + intent.getType());
                 }
             }
         }
-    }
-    
-    /**
-     * Load the HTML file into the webview by converting it to a data:
-     * URL. If there were any relative URLs, then they will fail as the
-     * webview does not allow access to the file:/// scheme for accessing 
-     * the local file system, 
-     * 
-     * @param uri file URI pointing to the content to be loaded
-     * @param mimeType mimetype provided
-     */
-    private void loadFile(Uri uri, String mimeType) {
-        String path = uri.getPath();
-        File f = new File(path);
-        final long length = f.length();
-        if (!f.exists() || length > MAXFILESIZE) {
-            return;
-        }
-        
-        // typecast to int is safe as long as MAXFILESIZE < MAXINT
-        byte[] array = new byte[(int)length];
-        
-        try {
-            InputStream is = new FileInputStream(f);
-            is.read(array);
-            is.close();
-        } catch (FileNotFoundException ex) {
-            // Checked for file existance already, so this should not happen
-            return;
-        } catch (IOException ex) {
-            // read or close failed
-            Log.e(LOGTAG, "Failed to access file: " + path, ex);
-            return;
-        }
-        mWebView.loadData(new String(array), mimeType, null);
     }
     
     @Override
