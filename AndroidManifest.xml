@@ -20,7 +20,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
         package="com.android.htmlviewer">
 
-    <application android:label="HTML Viewer">
+    <application android:label="@string/app_label">
         <activity android:name="HTMLViewerActivity" android:label="HTMLViewer"
                   android:theme="@android:style/Theme.Light" >
             <intent-filter>
