@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_label">"HTML-Anzeige"</string>
-    <string name="permlab_accessDrm">"Zugriff auf DRM-Content"</string>
-    <string name="permdesc_accessDrm">"Eine Anwendung kann auf DRM-geschützten Content zugreifen."</string>
+    <string name="app_label" msgid="3773515048729290843">"HTML-Anzeige"</string>
+    <string name="permlab_accessDrm" msgid="7850026158655780930">"Zugriff auf DRM-Content"</string>
+    <string name="permdesc_accessDrm" msgid="36218014609780329">"Eine Anwendung kann auf DRM-geschützten Content zugreifen."</string>
 </resources>

@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_label">"HTML 檢視器"</string>
-    <string name="permlab_accessDrm">"存取 DRM 內容。"</string>
-    <string name="permdesc_accessDrm">"允許應用程式存取 DRM 保護內容。"</string>
+    <string name="app_label" msgid="3773515048729290843">"HTML 檢視器"</string>
+    <string name="permlab_accessDrm" msgid="7850026158655780930">"存取 DRM 內容。"</string>
+    <string name="permdesc_accessDrm" msgid="36218014609780329">"允許應用程式存取 DRM 保護內容。"</string>
 </resources>
