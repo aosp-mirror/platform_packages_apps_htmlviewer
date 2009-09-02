@@ -99,17 +99,14 @@ public class HTMLViewerActivity extends Activity {
             Intent intent = getIntent();
             if (intent.getData() != null) {
                 Uri uri = intent.getData();
-                if ("file".equals(uri.getScheme())) {
-                    String contentUri = 
-                        FileContentProvider.BASE_URI + 
-                        uri.getEncodedPath() + 
-                        "?" +
-                        intent.getType();
-                    mWebView.loadUrl(contentUri);
-                } else {
-                    mWebView.loadUrl(intent.getData().toString() + 
-                        "?" + intent.getType());
+                String contentUri = "file".equals(uri.getScheme())
+                        ? FileContentProvider.BASE_URI + uri.getEncodedPath()
+                        : uri.toString();
+                String intentType = intent.getType();
+                if (intentType != null) {
+                    contentUri += "?" + intentType;
                 }
+                mWebView.loadUrl(contentUri);
             }
         }
     }
