@@ -15,7 +15,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_label">"Visionneuse HTML"</string>
-    <string name="permlab_accessDrm">"Accès au contenu DRM"</string>
-    <string name="permdesc_accessDrm">"Autorise l\'application à accéder à du contenu protégé par DRM."</string>
+    <string name="app_label" msgid="3773515048729290843">"Visionneuse HTML"</string>
+    <string name="permlab_accessDrm" msgid="7850026158655780930">"Accès au contenu DRM"</string>
+    <string name="permdesc_accessDrm" msgid="36218014609780329">"Autorise l\'application à accéder à du contenu protégé par DRM."</string>
 </resources>
