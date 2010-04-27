@@ -17,6 +17,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_label" msgid="3773515048729290843">"HTML 뷰어"</string>
-    <string name="permlab_accessDrm" msgid="7850026158655780930">"DRM 콘텐츠에 액세스합니다."</string>
-    <string name="permdesc_accessDrm" msgid="36218014609780329">"응용프로그램이 DRM으로 보호된 콘텐츠에 액세스할 수 있도록 허용합니다."</string>
+    <string name="permlab_accessDrm" msgid="7850026158655780930">"DRM 콘텐츠 사용"</string>
+    <string name="permdesc_accessDrm" msgid="36218014609780329">"응용프로그램이 DRM으로 보호된 콘텐츠를 사용할 수 있도록 허용합니다."</string>
 </resources>
