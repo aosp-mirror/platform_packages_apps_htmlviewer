@@ -17,12 +17,5 @@
 <resources>
     <!-- Title of the HTML Viewer activity. -->
     <string name="app_label">HTML Viewer</string>
-
-    <!-- Title of the permission that allows access to DRM content -->
-    <string name="permlab_accessDrm">Access DRM content.</string>
-
-    <!-- Description of the permission that allows access to DRM content -->
-    <string name="permdesc_accessDrm">Allows application to access
-        DRM-protected content.</string>
 </resources>
 
