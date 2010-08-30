@@ -17,6 +17,4 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_label" msgid="3773515048729290843">"Leitor de HTML"</string>
-    <string name="permlab_accessDrm" msgid="7850026158655780930">"Acessar conteúdo DRM."</string>
-    <string name="permdesc_accessDrm" msgid="36218014609780329">"Permite que o aplicativo acesse conteúdo protegido por DRM."</string>
 </resources>

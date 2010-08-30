@@ -17,6 +17,4 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_label" msgid="3773515048729290843">"HTMLビューア"</string>
-    <string name="permlab_accessDrm" msgid="7850026158655780930">"DRMコンテンツにアクセスする。"</string>
-    <string name="permdesc_accessDrm" msgid="36218014609780329">"DRM保護されているコンテンツへのアクセスをアプリケーションに許可します。"</string>
 </resources>
