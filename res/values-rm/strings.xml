@@ -16,9 +16,5 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for app_label (3773515048729290843) -->
-    <skip />
-    <string name="permlab_accessDrm" msgid="7850026158655780930">"Access al cuntegn DRM"</string>
-    <!-- no translation found for permdesc_accessDrm (36218014609780329) -->
-    <skip />
+    <string name="app_label" msgid="3773515048729290843">"Visualisaziun HTML"</string>
 </resources>
