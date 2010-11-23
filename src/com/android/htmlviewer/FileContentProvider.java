@@ -24,7 +24,9 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.ParcelFileDescriptor;
+import android.os.Process;
 
 /**
  * WebView does not support file: loading. This class wraps a file load
@@ -47,6 +49,11 @@ public class FileContentProvider extends ContentProvider {
     
     @Override
     public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
+        // android:exported="false" is broken in older releases so we have to
+        // manually enforce the calling identity.
+        if (Process.myUid() != Binder.getCallingUid()) {
+            throw new SecurityException("Permission denied");
+        }
         if (!"r".equals(mode)) {
             throw new FileNotFoundException("Bad mode for " + uri + ": " + mode);
         }

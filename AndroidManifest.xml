@@ -38,6 +38,7 @@
          </activity>
          
          <provider android:name="FileContentProvider"
+                 android:exported="false"
                  android:authorities="com.android.htmlfileprovider"
                  android:syncable="false" android:multiprocess="false"
                  android:grantUriPermissions="true" /> 
