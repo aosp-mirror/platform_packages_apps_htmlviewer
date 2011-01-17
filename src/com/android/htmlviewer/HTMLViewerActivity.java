@@ -110,7 +110,16 @@ public class HTMLViewerActivity extends Activity {
             }
         }
     }
-    
+
+    @Override
+    public void onBackPressed() {
+        if(mWebView.canGoBack()){
+            mWebView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
