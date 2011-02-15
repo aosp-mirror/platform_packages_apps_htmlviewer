@@ -18,5 +18,5 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_label" msgid="3773515048729290843">"HTML-visningsprogram"</string>
     <string name="permlab_accessDrm" msgid="7850026158655780930">"Åtkomst till DRM-innehåll."</string>
-    <string name="permdesc_accessDrm" msgid="36218014609780329">"Tillåter att ett program får åtkomst till DRM-skyddat innehåll."</string>
+    <string name="permdesc_accessDrm" msgid="36218014609780329">"Tillåter att en app får åtkomst till DRM-skyddat innehåll."</string>
 </resources>
