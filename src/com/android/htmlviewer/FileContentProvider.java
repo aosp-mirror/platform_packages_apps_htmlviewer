@@ -38,7 +38,6 @@ public class FileContentProvider extends ContentProvider {
     
     public static final String BASE_URI = 
             "content://com.android.htmlfileprovider";
-    public static final int BASE_URI_LEN = BASE_URI.length();
 
     @Override
     public String getType(Uri uri) {
@@ -57,7 +56,7 @@ public class FileContentProvider extends ContentProvider {
         if (!"r".equals(mode)) {
             throw new FileNotFoundException("Bad mode for " + uri + ": " + mode);
         }
-        String filename = uri.toString().substring(BASE_URI_LEN);
+        String filename = uri.getPath();
         return ParcelFileDescriptor.open(new File(filename),
             ParcelFileDescriptor.MODE_READ_ONLY);
     }
