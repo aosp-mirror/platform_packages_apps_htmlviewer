@@ -16,6 +16,24 @@
       "revId": "0207e4ae37eb72b77d79d6ebb2e1f2d612f33547",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAI33//+0Q\u003d",
+        "filename": "src/com/android/htmlviewer/FileContentProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1003744
+      },
+      "writtenOn": "2012-08-31T08:46:28Z",
+      "side": 1,
+      "message": "This class is only used by:\n\ncom/android/htmlviewer/HTMLViewerActivity.java\n\nand HTMLViewerActivity acts as the public interface in the manifest file. inside HTMLViewerActivity the creation of the Uri is made with:\n\nString contentUri \u003d \"file\".equals(uri.getScheme()) ? FileContentProvider.BASE_URI + uri.getEncodedPath() : uri.toString();\n\ni.e. only the path is sent forward anyway.",
+      "parentUuid": "AAAI63//9Q4\u003d",
+      "revId": "0207e4ae37eb72b77d79d6ebb2e1f2d612f33547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
