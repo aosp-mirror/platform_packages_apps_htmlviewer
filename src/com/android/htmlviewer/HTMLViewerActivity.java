@@ -132,7 +132,6 @@ public class HTMLViewerActivity extends Activity {
         super.onStop();
         
         CookieSyncManager.getInstance().stopSync(); 
-        mWebView.stopLoading();       
     }
     
     @Override
