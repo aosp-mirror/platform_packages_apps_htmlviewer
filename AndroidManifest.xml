@@ -24,7 +24,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application android:label="@string/app_label">
         <activity android:name="HTMLViewerActivity" android:label="HTMLViewer"
-                  android:theme="@android:style/Theme.Light" >
+                  android:theme="@android:style/Theme.Holo" >
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="android.intent.action.VIEW" />
