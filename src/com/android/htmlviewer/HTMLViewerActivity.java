@@ -81,8 +81,9 @@ public class HTMLViewerActivity extends Activity {
         
         // Configure the webview
         WebSettings s = mWebView.getSettings();
-        s.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         s.setUseWideViewPort(true);
+        s.setSupportZoom(true);
+        s.setBuiltInZoomControls(true);
         s.setSavePassword(false);
         s.setSaveFormData(false);
         s.setBlockNetworkLoads(true);
