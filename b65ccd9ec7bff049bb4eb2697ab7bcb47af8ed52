@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f8b8d70_ca3ba7fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1010674
+      },
+      "writtenOn": "2014-02-18T22:33:15Z",
+      "side": 1,
+      "message": "Do you mean the drive app uses HTMLViewer?",
+      "range": {
+        "startLine": 9,
+        "startChar": 14,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "b65ccd9ec7bff049bb4eb2697ab7bcb47af8ed52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf26394f_0d42257f",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1010674
+      },
+      "writtenOn": "2014-02-18T22:33:15Z",
+      "side": 1,
+      "message": "get rid of stale white space, here and below.",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 8
+      },
+      "revId": "b65ccd9ec7bff049bb4eb2697ab7bcb47af8ed52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
