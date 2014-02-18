@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "8f860164_3a23a5ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1017042
+      },
+      "writtenOn": "2014-02-18T22:44:35Z",
+      "side": 1,
+      "message": "Yes I do. Google Drive uses HTMLViewer when it shows content from Keep app. If you want I can share you a screenshot of the issue.",
+      "parentUuid": "6f8b8d70_ca3ba7fc",
+      "revId": "b65ccd9ec7bff049bb4eb2697ab7bcb47af8ed52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf26394f_0d42257f",
         "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
         "patchSetId": 1
@@ -42,6 +60,24 @@
         "endLine": 81,
         "endChar": 8
       },
+      "revId": "b65ccd9ec7bff049bb4eb2697ab7bcb47af8ed52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af81054e_58831578",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1017042
+      },
+      "writtenOn": "2014-02-18T22:44:35Z",
+      "side": 1,
+      "message": "Sorry I don\u0027t get your point, which exact white space are you referring?\nIs that one starts from line #114?",
+      "parentUuid": "cf26394f_0d42257f",
       "revId": "b65ccd9ec7bff049bb4eb2697ab7bcb47af8ed52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
