@@ -46,6 +46,9 @@ import java.io.InputStream;
  */
 public class HTMLViewerActivity extends Activity {
 
+    // TODO: Make public on android.content.Intent.
+    private static final String EXTRA_TEXT_ENCODING = "android.intent.extra.TEXT_ENCODING";
+
     /*
      * The WebView that is placed in this Activity
      */
@@ -103,6 +106,11 @@ public class HTMLViewerActivity extends Activity {
                 String contentUri = "file".equals(uri.getScheme())
                         ? FileContentProvider.BASE_URI + uri.getEncodedPath()
                         : uri.toString();
+                String encoding = intent.getStringExtra(EXTRA_TEXT_ENCODING);
+                if (encoding != null) {
+                    Log.i(LOGTAG, "Intent is forcing text encoding to: " + encoding);
+                    s.setDefaultTextEncodingName(encoding);
+                }
                 mWebView.loadUrl(contentUri);
             }
         }
