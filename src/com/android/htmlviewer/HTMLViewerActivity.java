@@ -34,51 +34,51 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Wraps a WebView widget within an Activity. When launched, it uses the 
- * URI from the intent as the URL to load into the WebView. 
+ * Wraps a WebView widget within an Activity. When launched, it uses the
+ * URI from the intent as the URL to load into the WebView.
  * It supports all URLs schemes that a standard WebView supports, as well as
  * loading the top level markup using the file scheme.
- * The WebView default settings are used with the exception of normal layout 
+ * The WebView default settings are used with the exception of normal layout
  * is set.
  * This activity shows a loading progress bar in the window title and sets
  * the window title to the title of the content.
  *
  */
 public class HTMLViewerActivity extends Activity {
-    
+
     /*
      * The WebView that is placed in this Activity
      */
     private WebView mWebView;
-    
+
     /*
-     * As the file content is loaded completely into RAM first, set 
+     * As the file content is loaded completely into RAM first, set
      * a limitation on the file size so we don't use too much RAM. If someone
      * wants to load content that is larger than this, then a content
      * provider should be used.
      */
     static final int MAXFILESIZE = 8096;
-    
+
     static final String LOGTAG = "HTMLViewerActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Call createInstance() explicitly. createInstance() is called in 
-        // BrowserFrame by WebView. As it is called in WebCore thread, it can 
+        // Call createInstance() explicitly. createInstance() is called in
+        // BrowserFrame by WebView. As it is called in WebCore thread, it can
         // happen after onResume() is called. To use getInstance() in onResume,
         // createInstance() needs to be called first.
         CookieSyncManager.createInstance(this);
 
         requestWindowFeature(Window.FEATURE_PROGRESS);
-        
+
         mWebView = new WebView(this);
         setContentView(mWebView);
-        
+
         // Setup callback support for title and progress bar
         mWebView.setWebChromeClient( new WebChrome() );
-        
+
         // Configure the webview
         WebSettings s = mWebView.getSettings();
         s.setUseWideViewPort(true);
@@ -87,11 +87,11 @@ public class HTMLViewerActivity extends Activity {
         s.setSavePassword(false);
         s.setSaveFormData(false);
         s.setBlockNetworkLoads(true);
-        
-        // Javascript is purposely disabled, so that nothing can be 
+
+        // Javascript is purposely disabled, so that nothing can be
         // automatically run.
         s.setJavaScriptEnabled(false);
-        
+
         // Restore a webview if we are meant to restore
         if (savedInstanceState != null) {
             mWebView.restoreState(savedInstanceState);
@@ -107,19 +107,19 @@ public class HTMLViewerActivity extends Activity {
             }
         }
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
-        CookieSyncManager.getInstance().startSync(); 
+        CookieSyncManager.getInstance().startSync();
     }
-    
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // the default implementation requires each view to have an id. As the
         // browser handles the state itself and it doesn't use id for the views,
         // don't call the default implementation. Otherwise it will trigger the
-        // warning like this, "couldn't save which view has focus because the 
+        // warning like this, "couldn't save which view has focus because the
         // focused view XXX has no id".
         mWebView.saveState(outState);
     }
@@ -127,23 +127,23 @@ public class HTMLViewerActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        
-        CookieSyncManager.getInstance().stopSync(); 
+
+        CookieSyncManager.getInstance().stopSync();
     }
-    
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mWebView.destroy();
     }
-    
+
     class WebChrome extends WebChromeClient {
-        
+
         @Override
         public void onReceivedTitle(WebView view, String title) {
             HTMLViewerActivity.this.setTitle(title);
         }
-        
+
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             getWindow().setFeatureInt(
@@ -153,5 +153,5 @@ public class HTMLViewerActivity extends Activity {
             }
         }
     }
-    
+
 }
