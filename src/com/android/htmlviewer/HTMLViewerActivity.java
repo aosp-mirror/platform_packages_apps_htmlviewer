@@ -92,6 +92,8 @@ public class HTMLViewerActivity extends Activity {
         // automatically run.
         s.setJavaScriptEnabled(false);
 
+        s.setDefaultTextEncodingName("utf-8");
+
         // Restore a webview if we are meant to restore
         if (savedInstanceState != null) {
             mWebView.restoreState(savedInstanceState);
