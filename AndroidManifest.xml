@@ -22,7 +22,8 @@
 
     <original-package android:name="com.android.htmlviewer" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <application android:label="@string/app_label">
+    <application android:label="@string/app_label"
+        android:requiredForProfile="all">
         <activity android:name="HTMLViewerActivity" android:label="HTMLViewer"
                   android:theme="@android:style/Theme.Holo" >
             <intent-filter>
