@@ -57,8 +57,11 @@ public class FileContentProvider extends ContentProvider {
             throw new FileNotFoundException("Bad mode for " + uri + ": " + mode);
         }
         String filename = uri.getPath();
-        return ParcelFileDescriptor.open(new File(filename),
-            ParcelFileDescriptor.MODE_READ_ONLY);
+        File f = new File(filename);
+        if (f.isDirectory()) {
+            return null;
+        }
+        return ParcelFileDescriptor.open(f, ParcelFileDescriptor.MODE_READ_ONLY);
     }
 
     @Override
