@@ -17,73 +17,49 @@
 package com.android.htmlviewer;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
-import android.webkit.CookieSyncManager;
+import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.zip.GZIPInputStream;
 
 /**
- * Wraps a WebView widget within an Activity. When launched, it uses the
- * URI from the intent as the URL to load into the WebView.
- * It supports all URLs schemes that a standard WebView supports, as well as
- * loading the top level markup using the file scheme.
- * The WebView default settings are used with the exception of normal layout
- * is set.
- * This activity shows a loading progress bar in the window title and sets
- * the window title to the title of the content.
- *
+ * Simple activity that shows the requested HTML page. This utility is
+ * purposefully very limited in what it supports, including no network or
+ * JavaScript.
  */
 public class HTMLViewerActivity extends Activity {
+    private static final String TAG = "HTMLViewer";
 
-    /*
-     * The WebView that is placed in this Activity
-     */
     private WebView mWebView;
-
-    /*
-     * As the file content is loaded completely into RAM first, set
-     * a limitation on the file size so we don't use too much RAM. If someone
-     * wants to load content that is larger than this, then a content
-     * provider should be used.
-     */
-    static final int MAXFILESIZE = 8096;
-
-    static final String LOGTAG = "HTMLViewerActivity";
+    private View mLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Call createInstance() explicitly. createInstance() is called in
-        // BrowserFrame by WebView. As it is called in WebCore thread, it can
-        // happen after onResume() is called. To use getInstance() in onResume,
-        // createInstance() needs to be called first.
-        CookieSyncManager.createInstance(this);
+        setContentView(R.layout.main);
 
-        requestWindowFeature(Window.FEATURE_PROGRESS);
+        mWebView = (WebView) findViewById(R.id.webview);
+        mLoading = findViewById(R.id.loading);
 
-        mWebView = new WebView(this);
-        setContentView(mWebView);
+        mWebView.setWebChromeClient(new ChromeClient());
+        mWebView.setWebViewClient(new ViewClient());
 
-        // Setup callback support for title and progress bar
-        mWebView.setWebChromeClient( new WebChrome() );
-
-        // Configure the webview
         WebSettings s = mWebView.getSettings();
         s.setUseWideViewPort(true);
         s.setSupportZoom(true);
-        s.setBuiltInZoomControls(true);
         s.setSavePassword(false);
         s.setSaveFormData(false);
         s.setBlockNetworkLoads(true);
@@ -91,46 +67,14 @@ public class HTMLViewerActivity extends Activity {
         // Javascript is purposely disabled, so that nothing can be
         // automatically run.
         s.setJavaScriptEnabled(false);
-
         s.setDefaultTextEncodingName("utf-8");
 
-        // Restore a webview if we are meant to restore
-        if (savedInstanceState != null) {
-            mWebView.restoreState(savedInstanceState);
-        } else {
-            // Check the intent for the content to view
-            Intent intent = getIntent();
-            if (intent.getData() != null) {
-                Uri uri = intent.getData();
-                String contentUri = "file".equals(uri.getScheme())
-                        ? FileContentProvider.BASE_URI + uri.getEncodedPath()
-                        : uri.toString();
-                mWebView.loadUrl(contentUri);
-            }
+        final Intent intent = getIntent();
+        if (intent.hasExtra(Intent.EXTRA_TITLE)) {
+            setTitle(intent.getStringExtra(Intent.EXTRA_TITLE));
         }
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        CookieSyncManager.getInstance().startSync();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // the default implementation requires each view to have an id. As the
-        // browser handles the state itself and it doesn't use id for the views,
-        // don't call the default implementation. Otherwise it will trigger the
-        // warning like this, "couldn't save which view has focus because the
-        // focused view XXX has no id".
-        mWebView.saveState(outState);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        CookieSyncManager.getInstance().stopSync();
+        mWebView.loadUrl(String.valueOf(intent.getData()));
     }
 
     @Override
@@ -139,21 +83,40 @@ public class HTMLViewerActivity extends Activity {
         mWebView.destroy();
     }
 
-    class WebChrome extends WebChromeClient {
-
+    private class ChromeClient extends WebChromeClient {
         @Override
         public void onReceivedTitle(WebView view, String title) {
-            HTMLViewerActivity.this.setTitle(title);
-        }
-
-        @Override
-        public void onProgressChanged(WebView view, int newProgress) {
-            getWindow().setFeatureInt(
-                    Window.FEATURE_PROGRESS, newProgress*100);
-            if (newProgress == 100) {
-                CookieSyncManager.getInstance().sync();
+            if (!getIntent().hasExtra(Intent.EXTRA_TITLE)) {
+                HTMLViewerActivity.this.setTitle(title);
             }
         }
     }
 
+    private class ViewClient extends WebViewClient {
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            mLoading.setVisibility(View.GONE);
+        }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view,
+                WebResourceRequest request) {
+            final Uri uri = request.getUrl();
+            if (ContentResolver.SCHEME_FILE.equals(uri.getScheme())
+                    && uri.getPath().endsWith(".gz")) {
+                Log.d(TAG, "Trying to decompress " + uri + " on the fly");
+                try {
+                    final InputStream in = new GZIPInputStream(
+                            getContentResolver().openInputStream(uri));
+                    final WebResourceResponse resp = new WebResourceResponse(
+                            getIntent().getType(), "utf-8", in);
+                    resp.setStatusCodeAndReasonPhrase(200, "OK");
+                    return resp;
+                } catch (IOException e) {
+                    Log.w(TAG, "Failed to decompress; falling back", e);
+                }
+            }
+            return null;
+        }
+    }
 }
