@@ -1,0 +1,4 @@
+android_app {
+    name: "HTMLViewer",
+    srcs: ["**/*.java"],
+}
