@@ -17,10 +17,12 @@
 package com.android.htmlviewer;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Browser;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -32,6 +34,7 @@ import android.webkit.WebViewClient;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -98,6 +101,38 @@ public class HTMLViewerActivity extends Activity {
         @Override
         public void onPageFinished(WebView view, String url) {
             mLoading.setVisibility(View.GONE);
+        }
+
+    	@Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Intent intent;
+            // Perform generic parsing of the URI to turn it into an Intent.
+            try {
+                intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+            } catch (URISyntaxException ex) {
+                Log.w(TAG, "Bad URI " + url + ": " + ex.getMessage());
+                return false;
+            }
+            // Sanitize the Intent, ensuring web pages can not bypass browser
+            // security (only access to BROWSABLE activities).
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setComponent(null);
+            Intent selector = intent.getSelector();
+            if (selector != null) {
+                selector.addCategory(Intent.CATEGORY_BROWSABLE);
+                selector.setComponent(null);
+            }
+            // Pass the package name as application ID so that the intent from the
+            // same application can be opened in the same tab.
+            intent.putExtra(Browser.EXTRA_APPLICATION_ID,
+                    view.getContext().getPackageName());
+            try {
+                view.getContext().startActivity(intent);
+            } catch (ActivityNotFoundException ex) {
+                Log.w(TAG, "No application can handle " + url);
+                return false;
+            }
+            return true;
         }
 
         @Override
