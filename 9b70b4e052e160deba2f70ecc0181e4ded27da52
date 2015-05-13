@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6df6599f_6ee5cfd2",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1021004
+      },
+      "writtenOn": "2015-05-13T13:06:53Z",
+      "side": 1,
+      "message": "HTMLViewer has no network access, no JS, etc, and so trying to follow links in it (by returning false) is very unlikely to work in any case, and is probably not desirable even if it works (HTMLViewer is not intended for that).\n\nThe right thing to do here is almost certainly to simply return true unconditionally, unless there\u0027s some case where that is actually a problem.",
+      "revId": "9b70b4e052e160deba2f70ecc0181e4ded27da52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
