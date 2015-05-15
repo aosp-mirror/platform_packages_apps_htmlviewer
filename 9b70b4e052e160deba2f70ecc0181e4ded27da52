@@ -16,6 +16,23 @@
       "revId": "9b70b4e052e160deba2f70ecc0181e4ded27da52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad885137_3354f0d9",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1021004
+      },
+      "writtenOn": "2015-05-15T13:03:07Z",
+      "side": 1,
+      "message": "This isn\u0027t relevant since we are trying to override all navigations to go to something outside htmlviewer, you can remove it. (htmlviewer doesn\u0027t respect this intent extra anyway).",
+      "revId": "9b70b4e052e160deba2f70ecc0181e4ded27da52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
