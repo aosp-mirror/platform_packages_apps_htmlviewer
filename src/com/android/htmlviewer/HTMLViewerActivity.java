@@ -20,6 +20,8 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +49,7 @@ public class HTMLViewerActivity extends Activity {
 
     private WebView mWebView;
     private View mLoading;
+    private Uri mOnPermissionDestination;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +82,34 @@ public class HTMLViewerActivity extends Activity {
             setTitle(intent.getStringExtra(Intent.EXTRA_TITLE));
         }
 
-        mWebView.loadUrl(String.valueOf(intent.getData()));
+        Uri destination = intent.getData();
+        if (destination != null) {
+            // Is this a local file?
+            if ("file".equals(destination.getScheme())) {
+                if (PackageManager.PERMISSION_DENIED ==
+                        checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    // If we don't have local file permissions, save the destination so we can try
+                    // again once they're granted.
+                    mOnPermissionDestination = destination;
+                    requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+                }
+            }
+            mWebView.loadUrl(destination.toString());
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+            String permissions[], int[] grantResults) {
+        // We only ever request 1 permission, so these arguments should always have the same form.
+        assert permissions.length == 1;
+        assert Manifest.permission.READ_EXTERNAL_STORAGE.equals(permissions[0]);
+        assert grantResults.length == 1;
+
+        if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
+            // Try again now that we have the permission.
+            mWebView.loadUrl(mOnPermissionDestination.toString());
+        }
     }
 
     @Override
