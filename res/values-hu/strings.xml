@@ -17,4 +17,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_label" msgid="3773515048729290843">"HTML megtekintő"</string>
+    <!-- no translation found for cannot_open_link (351048140767211378) -->
+    <skip />
 </resources>
