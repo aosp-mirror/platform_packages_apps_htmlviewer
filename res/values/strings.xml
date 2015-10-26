@@ -18,5 +18,6 @@
     <!-- Title of the HTML Viewer activity. -->
     <string name="app_label">HTML Viewer</string>
     <string name="cannot_open_link">No application can open this link.</string>
+    <string name="turn_on_storage_permission">Please turn on Storage permission in app permissions.</string>
 </resources>
 
