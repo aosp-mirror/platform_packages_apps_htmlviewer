@@ -16,12 +16,18 @@
 
 package com.android.htmlviewer;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -44,6 +50,8 @@ import java.util.zip.GZIPInputStream;
  */
 public class HTMLViewerActivity extends Activity {
     private static final String TAG = "HTMLViewer";
+
+    private static final int REQUEST_READ_EXTERNAL_STORAGE = 1;
 
     private WebView mWebView;
     private View mLoading;
@@ -74,18 +82,58 @@ public class HTMLViewerActivity extends Activity {
         s.setJavaScriptEnabled(false);
         s.setDefaultTextEncodingName("utf-8");
 
-        final Intent intent = getIntent();
-        if (intent.hasExtra(Intent.EXTRA_TITLE)) {
-            setTitle(intent.getStringExtra(Intent.EXTRA_TITLE));
+        requestRuntimePermissionIfNeeded();
         }
-
-        mWebView.loadUrl(String.valueOf(intent.getData()));
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mWebView.destroy();
+    }
+
+    private void loadUrl() {
+        final Intent intent = getIntent();
+        if (intent.hasExtra(Intent.EXTRA_TITLE)) {
+            setTitle(intent.getStringExtra(Intent.EXTRA_TITLE));
+        }
+        mWebView.loadUrl(String.valueOf(intent.getData()));
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void requestRuntimePermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            loadUrl();
+            return;
+        }
+        if (ContextCompat.checkSelfPermission(HTMLViewerActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(HTMLViewerActivity.this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    REQUEST_READ_EXTERNAL_STORAGE);
+        } else {
+            loadUrl();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    loadUrl();
+                } else {
+                    finish();
+                    Toast.makeText(HTMLViewerActivity.this,
+                            R.string.turn_on_storage_permission, Toast.LENGTH_SHORT).show();
+                }
+                return;
+            default:
+                finish();
+                Toast.makeText(HTMLViewerActivity.this,
+                        R.string.turn_on_storage_permission, Toast.LENGTH_SHORT).show();
+                return;
+        }
     }
 
     private class ChromeClient extends WebChromeClient {
