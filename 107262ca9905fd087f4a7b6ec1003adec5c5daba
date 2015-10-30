@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36204e91_9e08013d",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1072234
+      },
+      "writtenOn": "2015-10-30T13:10:12Z",
+      "side": 1,
+      "message": "It might be much clear to combine double \u0027if\u0027 conditions to one and move below loadUrl() to else condition of it. In this patch, loadUrl() is called only if data has file:// scheme, so it is little different compared to Paul\u0027s patch. I will upload new patch set later.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 24
+      },
+      "revId": "107262ca9905fd087f4a7b6ec1003adec5c5daba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
