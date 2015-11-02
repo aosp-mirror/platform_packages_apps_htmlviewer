@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6195673_bc4e203f",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1060353
+      },
+      "writtenOn": "2015-11-02T17:27:31Z",
+      "side": 1,
+      "message": "Where does mIntent get set? I don\u0027t see it.",
+      "revId": "86c0c5c814246bb8c45881742113ca3136515143",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7643a650_bbaa92d6",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1060353
+      },
+      "writtenOn": "2015-11-02T17:27:31Z",
+      "side": 1,
+      "message": "How about \"requestPermissionAndLoad\"? I leave it up to you, though.",
+      "revId": "86c0c5c814246bb8c45881742113ca3136515143",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6195673_9c6484cb",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1060353
+      },
+      "writtenOn": "2015-11-02T17:27:31Z",
+      "side": 1,
+      "message": "Have you tested this? It looks like it will fail e.g. on any device where \"/sdcard\" is a symlink to the actual storage dir, and they use \"/sdcard\" in their URL. You should also keep the scheme check to avoid false positives on data URLs containing \"/sdcard\" or the like. I would do something like:\n\nif (\"file\".equals(destination.getScheme())) {\nFile path \u003d new File(destination.getEncodedPath());\nif (path.getCanonicalPath().startsWith(extStorageDir.toString())) {\n...",
+      "revId": "86c0c5c814246bb8c45881742113ca3136515143",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7643a650_5b484608",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1060353
+      },
+      "writtenOn": "2015-11-02T17:27:31Z",
+      "side": 1,
+      "message": "This comment seems no longer applicable after your change.",
+      "revId": "86c0c5c814246bb8c45881742113ca3136515143",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
