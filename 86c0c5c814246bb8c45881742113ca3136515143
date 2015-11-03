@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "765c8636_f3371b8a",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1072234
+      },
+      "writtenOn": "2015-11-03T02:58:29Z",
+      "side": 1,
+      "message": "It is in requestRuntimePermission(). I will take it out of the method and set it in onCreate().",
+      "parentUuid": "f6195673_bc4e203f",
+      "revId": "86c0c5c814246bb8c45881742113ca3136515143",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7643a650_bbaa92d6",
         "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2015-11-02T17:27:31Z",
       "side": 1,
       "message": "How about \"requestPermissionAndLoad\"? I leave it up to you, though.",
+      "revId": "86c0c5c814246bb8c45881742113ca3136515143",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "765c8636_b341a3e8",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1072234
+      },
+      "writtenOn": "2015-11-03T02:58:29Z",
+      "side": 1,
+      "message": "I will fix it.",
+      "parentUuid": "7643a650_bbaa92d6",
       "revId": "86c0c5c814246bb8c45881742113ca3136515143",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d63612de_fe2da66a",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1072234
+      },
+      "writtenOn": "2015-11-03T02:58:29Z",
+      "side": 1,
+      "message": "Sorry for ambiguous fix. I will leave it as scheme based check.",
+      "parentUuid": "f6195673_9c6484cb",
+      "revId": "86c0c5c814246bb8c45881742113ca3136515143",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7643a650_5b484608",
         "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2015-11-02T17:27:31Z",
       "side": 1,
       "message": "This comment seems no longer applicable after your change.",
+      "revId": "86c0c5c814246bb8c45881742113ca3136515143",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "765c8636_934e9f16",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1072234
+      },
+      "writtenOn": "2015-11-03T02:58:29Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "7643a650_5b484608",
       "revId": "86c0c5c814246bb8c45881742113ca3136515143",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
