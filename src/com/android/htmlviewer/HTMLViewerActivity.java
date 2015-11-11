@@ -49,7 +49,7 @@ public class HTMLViewerActivity extends Activity {
 
     private WebView mWebView;
     private View mLoading;
-    private Uri mOnPermissionDestination;
+    private Intent mIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,24 +77,28 @@ public class HTMLViewerActivity extends Activity {
         s.setJavaScriptEnabled(false);
         s.setDefaultTextEncodingName("utf-8");
 
-        final Intent intent = getIntent();
-        if (intent.hasExtra(Intent.EXTRA_TITLE)) {
-            setTitle(intent.getStringExtra(Intent.EXTRA_TITLE));
-        }
+        mIntent = getIntent();
+        requestPermissionAndLoad();
+    }
 
-        Uri destination = intent.getData();
+    private void loadUrl() {
+        if (mIntent.hasExtra(Intent.EXTRA_TITLE)) {
+            setTitle(mIntent.getStringExtra(Intent.EXTRA_TITLE));
+        }
+        mWebView.loadUrl(String.valueOf(mIntent.getData()));
+    }
+
+    private void requestPermissionAndLoad() {
+        Uri destination = mIntent.getData();
         if (destination != null) {
             // Is this a local file?
-            if ("file".equals(destination.getScheme())) {
-                if (PackageManager.PERMISSION_DENIED ==
-                        checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    // If we don't have local file permissions, save the destination so we can try
-                    // again once they're granted.
-                    mOnPermissionDestination = destination;
-                    requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-                }
+            if ("file".equals(destination.getScheme())
+                        && PackageManager.PERMISSION_DENIED ==
+                                checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+            } else {
+                loadUrl();
             }
-            mWebView.loadUrl(destination.toString());
         }
     }
 
@@ -108,7 +112,11 @@ public class HTMLViewerActivity extends Activity {
 
         if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
             // Try again now that we have the permission.
-            mWebView.loadUrl(mOnPermissionDestination.toString());
+            loadUrl();
+        } else {
+            Toast.makeText(HTMLViewerActivity.this,
+                    R.string.turn_on_storage_permission, Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 
