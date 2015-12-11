@@ -40,6 +40,8 @@
                 <data android:mimeType="application/xhtml+xml"/>
                 <data android:mimeType="application/vnd.wap.xhtml+xml"/>
             </intent-filter>
-         </activity>
+        </activity>
+        <meta-data android:name="android.nfc.disable_beam_default"
+                android:value="true" />
     </application>
 </manifest>
