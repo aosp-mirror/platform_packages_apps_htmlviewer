@@ -108,9 +108,8 @@ public class HTMLViewerActivity extends Activity {
         // We only ever request 1 permission, so these arguments should always have the same form.
         assert permissions.length == 1;
         assert Manifest.permission.READ_EXTERNAL_STORAGE.equals(permissions[0]);
-        assert grantResults.length == 1;
 
-        if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
+        if (grantResults.length == 1 && PackageManager.PERMISSION_GRANTED == grantResults[0]) {
             // Try again now that we have the permission.
             loadUrl();
         } else {
