@@ -24,6 +24,7 @@ import android.content.pm.PackageManager;
 import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Browser;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -161,6 +162,10 @@ public class HTMLViewerActivity extends Activity {
                 selector.addCategory(Intent.CATEGORY_BROWSABLE);
                 selector.setComponent(null);
             }
+            // Pass the package name as application ID so that the intent from the
+            // same application can be opened in the same tab.
+            intent.putExtra(Browser.EXTRA_APPLICATION_ID,
+                            view.getContext().getPackageName());
 
             try {
                 view.getContext().startActivity(intent);
