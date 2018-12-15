@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26067708_032b2708",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1359095
+      },
+      "writtenOn": "2018-12-15T02:11:11Z",
+      "side": 1,
+      "message": "When doing this, I think it is necessary to add a shouldOverrideUrlLoading(WebView view, String url) that packs the url into a local request object then calls this version of the method. Otherwise, any existing code still calling the deprecated version will proceed with the request where it would not have in the past.",
+      "revId": "2439a66e2aa31cc0fe2430e6b07f461b82d180e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
