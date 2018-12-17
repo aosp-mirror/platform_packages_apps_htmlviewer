@@ -58,7 +58,7 @@ public class HTMLViewerActivity extends Activity {
 
         setContentView(R.layout.main);
 
-        mWebView = (WebView) findViewById(R.id.webview);
+        mWebView = findViewById(R.id.webview);
         mLoading = findViewById(R.id.loading);
 
         mWebView.setWebChromeClient(new ChromeClient());
@@ -142,7 +142,8 @@ public class HTMLViewerActivity extends Activity {
         }
 
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            String url = request.getUrl().toString();
             Intent intent;
             // Perform generic parsing of the URI to turn it into an Intent.
             try {
@@ -166,10 +167,9 @@ public class HTMLViewerActivity extends Activity {
             // same application can be opened in the same tab.
             intent.putExtra(Browser.EXTRA_APPLICATION_ID,
                             view.getContext().getPackageName());
-
             try {
                 view.getContext().startActivity(intent);
-            } catch (ActivityNotFoundException ex) {
+            } catch (ActivityNotFoundException | SecurityException ex) {
                 Log.w(TAG, "No application can handle " + url);
                 Toast.makeText(HTMLViewerActivity.this,
                         R.string.cannot_open_link, Toast.LENGTH_SHORT).show();
