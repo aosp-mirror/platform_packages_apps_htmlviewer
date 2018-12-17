@@ -16,6 +16,24 @@
       "revId": "2439a66e2aa31cc0fe2430e6b07f461b82d180e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b00fcb6e_665bf13d",
+        "filename": "src/com/android/htmlviewer/HTMLViewerActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1338311
+      },
+      "writtenOn": "2018-12-17T19:59:00Z",
+      "side": 1,
+      "message": "Hi Bob,\n  Will make that change in a separate CL. This CL is merging CL: https://googleplex-android-review.git.corp.google.com/5041044",
+      "parentUuid": "26067708_032b2708",
+      "revId": "2439a66e2aa31cc0fe2430e6b07f461b82d180e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
