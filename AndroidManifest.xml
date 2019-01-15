@@ -21,9 +21,6 @@
         package="com.android.htmlviewer">
     <original-package android:name="com.android.htmlviewer" />
 
-    <uses-sdk android:minSdkVersion="23"
-            android:targetSdkVersion="23" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application android:label="@string/app_label"
@@ -44,5 +41,6 @@
         </activity>
         <meta-data android:name="android.nfc.disable_beam_default"
                 android:value="true" />
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
     </application>
 </manifest>
