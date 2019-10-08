@@ -21,8 +21,6 @@
         package="com.android.htmlviewer">
     <original-package android:name="com.android.htmlviewer" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application android:label="@string/app_label"
             android:supportsRtl="true">
         <activity android:name="HTMLViewerActivity"
@@ -31,7 +29,6 @@
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="android.intent.action.VIEW" />
-                <data android:scheme="file" />
                 <data android:scheme="content" />
                 <data android:mimeType="text/html"/>
                 <data android:mimeType="text/plain"/>
