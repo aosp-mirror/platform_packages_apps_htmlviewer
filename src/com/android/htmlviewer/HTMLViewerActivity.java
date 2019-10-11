@@ -21,7 +21,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Browser;
@@ -79,7 +78,7 @@ public class HTMLViewerActivity extends Activity {
         s.setDefaultTextEncodingName("utf-8");
 
         mIntent = getIntent();
-        requestPermissionAndLoad();
+        loadUrl();
     }
 
     private void loadUrl() {
@@ -87,37 +86,6 @@ public class HTMLViewerActivity extends Activity {
             setTitle(mIntent.getStringExtra(Intent.EXTRA_TITLE));
         }
         mWebView.loadUrl(String.valueOf(mIntent.getData()));
-    }
-
-    private void requestPermissionAndLoad() {
-        Uri destination = mIntent.getData();
-        if (destination != null) {
-            // Is this a local file?
-            if ("file".equals(destination.getScheme())
-                        && PackageManager.PERMISSION_DENIED ==
-                                checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-            } else {
-                loadUrl();
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-            String permissions[], int[] grantResults) {
-        // We only ever request 1 permission, so these arguments should always have the same form.
-        assert permissions.length == 1;
-        assert Manifest.permission.READ_EXTERNAL_STORAGE.equals(permissions[0]);
-
-        if (grantResults.length == 1 && PackageManager.PERMISSION_GRANTED == grantResults[0]) {
-            // Try again now that we have the permission.
-            loadUrl();
-        } else {
-            Toast.makeText(HTMLViewerActivity.this,
-                    R.string.turn_on_storage_permission, Toast.LENGTH_SHORT).show();
-            finish();
-        }
     }
 
     @Override
