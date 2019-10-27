@@ -1,0 +1,5 @@
+Build-Cop-Override+1: Xin Li <delphij@google.com>
+Presubmit-Verified-1: Treehugger Robot <treehugger-gerrit@google.com>
+Reviewed-on: https://android-review.googlesource.com/c/platform/packages/apps/HTMLViewer/+/1151967
+Project: platform/packages/apps/HTMLViewer
+Branch: refs/heads/master
