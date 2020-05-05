@@ -1,0 +1,13 @@
+Open-Source-Licensing-1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Open-Source-Licensing+2: Bob Badour <bbadour@google.com>
+Open-Source-Licensing+2: Jaewoong Jung <jungjw@google.com>
+Autosubmit+1: Bob Badour <bbadour@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Code-Review+1: David Nelloms <davidln@google.com>
+Code-Review+2: Jaewoong Jung <jungjw@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Tue, 05 May 2020 16:45:41 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/packages/apps/HTMLViewer/+/1297057
+Project: platform/packages/apps/HTMLViewer
+Branch: refs/heads/master
