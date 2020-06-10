@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 /* //device/apps/Browser/AndroidManifest.xml
 **
@@ -18,18 +19,19 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.android.htmlviewer">
-    <original-package android:name="com.android.htmlviewer" />
+     package="com.android.htmlviewer">
+    <original-package android:name="com.android.htmlviewer"/>
 
     <application android:label="@string/app_label"
-            android:supportsRtl="true">
+         android:supportsRtl="true">
         <activity android:name="HTMLViewerActivity"
-                android:label="@string/app_label"
-                android:theme="@android:style/Theme.DeviceDefault.Settings">
+             android:label="@string/app_label"
+             android:theme="@android:style/Theme.DeviceDefault.Settings"
+             android:exported="true">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="android.intent.action.VIEW" />
-                <data android:scheme="content" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:scheme="content"/>
                 <data android:mimeType="text/html"/>
                 <data android:mimeType="text/plain"/>
                 <data android:mimeType="application/xhtml+xml"/>
@@ -37,7 +39,8 @@
             </intent-filter>
         </activity>
         <meta-data android:name="android.nfc.disable_beam_default"
-                android:value="true" />
-        <meta-data android:name="android.max_aspect" android:value="2.1" />
+             android:value="true"/>
+        <meta-data android:name="android.max_aspect"
+             android:value="2.1"/>
     </application>
 </manifest>
