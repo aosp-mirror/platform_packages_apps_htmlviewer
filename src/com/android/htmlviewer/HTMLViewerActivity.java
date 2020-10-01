@@ -71,6 +71,7 @@ public class HTMLViewerActivity extends Activity {
         s.setSavePassword(false);
         s.setSaveFormData(false);
         s.setBlockNetworkLoads(true);
+        s.setAllowFileAccess(true);
 
         // Javascript is purposely disabled, so that nothing can be
         // automatically run.
