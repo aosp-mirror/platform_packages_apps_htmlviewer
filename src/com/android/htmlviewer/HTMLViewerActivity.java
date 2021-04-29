@@ -55,7 +55,7 @@ public class HTMLViewerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView();
+        setContentView(R.layout.main);
 
         mWebView = findViewById(R.id.webview);
         mLoading = findViewById(R.id.loading);
@@ -81,10 +81,6 @@ public class HTMLViewerActivity extends Activity {
         mIntent = getIntent();
         setBackButton();
         loadUrl();
-    }
-
-    protected void setContentView() {
-        setContentView(R.layout.main);
     }
 
     private void loadUrl() {
