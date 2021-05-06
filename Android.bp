@@ -17,6 +17,18 @@ license {
 
 android_app {
     name: "HTMLViewer",
+    manifest: "AndroidManifest.xml",
     srcs: ["**/*.java"],
+    exclude_srcs: ["src/com/android/htmlviewer/CarHTMLViewerActivity.java"],
+    sdk_version: "current",
+}
+
+android_app {
+    name: "CarHTMLViewer",
+    manifest: "AndroidManifest-car.xml",
+    overrides: ["HTMLViewer"],
+    srcs: ["**/*.java"],
+    libs: ["android.car-stubs"],
+    static_libs: ["car-ui-lib"],
     sdk_version: "current",
 }
