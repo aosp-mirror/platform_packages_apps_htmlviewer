@@ -19,7 +19,7 @@ package com.android.htmlviewer;
 import android.webkit.WebView;
 
 import com.android.car.ui.core.CarUi;
-import com.android.car.ui.toolbar.Toolbar;
+import com.android.car.ui.toolbar.NavButtonMode;
 import com.android.car.ui.toolbar.ToolbarController;
 
 /**
@@ -34,7 +34,7 @@ public class CarHTMLViewerActivity extends HTMLViewerActivity {
         WebView webView = requireViewById(R.id.webview);
         webView.setDefaultFocusHighlightEnabled(false);
         mToolbar = CarUi.requireToolbar(this);
-        mToolbar.setState(Toolbar.State.SUBPAGE);
+        mToolbar.setNavButtonMode(NavButtonMode.BACK);
     }
 
     @Override
