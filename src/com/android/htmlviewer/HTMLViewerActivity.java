@@ -34,6 +34,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -84,6 +89,7 @@ public class HTMLViewerActivity extends Activity {
     }
 
     protected void setContentView() {
+        setupEdgeToEdge();
         setContentView(R.layout.main);
     }
 
@@ -186,5 +192,21 @@ public class HTMLViewerActivity extends Activity {
             }
             return null;
         }
+    }
+
+    private void setupEdgeToEdge() {
+        // Shamelessly copied from SettingsHomepageActivity
+        // https://cs.android.com/android/platform/superproject/main/+/main:packages/apps/Settings/src/com/android/settings/homepage/SettingsHomepageActivity.java;l=355;drc=6b4b7336bc0bdbbdbd144429b8dfb006503d6a7b
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content),
+                (v, windowInsets) -> {
+                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+                    // Apply the insets paddings to the view.
+                    v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+
+                    // Return CONSUMED if you don't want the window insets to keep being
+                    // passed down to descendant views.
+                    return WindowInsetsCompat.CONSUMED;
+                });
     }
 }
