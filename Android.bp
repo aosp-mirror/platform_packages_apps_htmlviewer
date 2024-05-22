@@ -8,6 +8,7 @@ android_app {
     manifest: "AndroidManifest.xml",
     srcs: ["**/*.java"],
     exclude_srcs: ["src/com/android/htmlviewer/CarHTMLViewerActivity.java"],
+    static_libs: ["androidx.core_core"],
     sdk_version: "current",
 }
 
@@ -17,6 +18,9 @@ android_app {
     overrides: ["HTMLViewer"],
     srcs: ["**/*.java"],
     libs: ["android.car-stubs"],
-    static_libs: ["car-ui-lib"],
+    static_libs: [
+        "androidx.core_core",
+        "car-ui-lib",
+    ],
     sdk_version: "current",
 }
